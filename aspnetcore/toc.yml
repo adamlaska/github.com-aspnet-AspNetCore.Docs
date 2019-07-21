@@ -192,7 +192,7 @@
       uid: fundamentals/http-requests
     - name: Static files
       uid: fundamentals/static-files
-    - name: Code generator
+    - name: aspnet-codegenerator
       uid: fundamentals/tools/dotnet-aspnet-codegenerator
 - name: Web apps
   items:
@@ -532,6 +532,10 @@
       uid: grpc/aspnetcore
     - name: Configuration
       uid: grpc/configuration
+    - name: Authentication and authorization
+      uid: grpc/authn-and-authz
+    - name: Security considerations
+      uid: grpc/security
     - name: Migrating gRPC services from C Core to ASP.NET Core
       uid: grpc/migration
     - name: Comparing gRPC services with HTTP APIs
@@ -558,6 +562,10 @@
       uid: test/troubleshoot
     - name: Logging
       uid: fundamentals/logging/index
+    - name: Troubleshoot Azure and IIS
+      uid: test/troubleshoot-azure-iis
+    - name: Azure and IIS errors reference
+      uid: host-and-deploy/azure-iis-errors-reference
 - name: Data access
   items:
     - name: Tutorials
@@ -654,7 +662,7 @@
           uid: host-and-deploy/aspnet-core-module
         - name: Troubleshoot
           displayName: azure, deploy, publish
-          uid: host-and-deploy/azure-apps/troubleshoot
+          uid: test/troubleshoot-azure-iis
         - name: Errors reference
           displayName: azure, deploy, publish
           uid: host-and-deploy/azure-iis-errors-reference
@@ -695,7 +703,7 @@
           uid: host-and-deploy/iis/modules
         - name: Troubleshoot
           displayName: deploy, publish
-          uid: host-and-deploy/iis/troubleshoot
+          uid: test/troubleshoot-azure-iis
         - name: Errors reference
           displayName: deploy, publish
           uid: host-and-deploy/azure-iis-errors-reference
