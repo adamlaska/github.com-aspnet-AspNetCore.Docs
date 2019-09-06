@@ -1,6 +1,7 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+using System;
 using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -14,16 +15,16 @@ namespace SignalRConnectionHandlerSample
 {
     public class MessagesConnectionHandler : ConnectionHandler
     {
-        // TODO: Use concurrent collection, lock, or remove connection list
-        private List<ConnectionContext> Connections { get; } = new List<ConnectionContext>();
+        private ConcurrentDictionary<string, ConnectionContext> Connections { get; } = new ConcurrentDictionary<string, ConnectionContext>();
 
         public override async Task OnConnectedAsync(ConnectionContext connection)
         {
-            Connections.Add(connection);
-
+            var connectionName = Guid.NewGuid().ToString();
             var transportType = connection.Features.Get<IHttpTransportFeature>()?.TransportType;
 
-            await Broadcast($"{connection.ConnectionId} connected ({transportType})");
+            Connections.TryAdd(connectionName, connection);
+
+            await Broadcast($"{connectionName} connected ({transportType})");
 
             try
             {
@@ -38,7 +39,7 @@ namespace SignalRConnectionHandlerSample
                         {
                             // We can avoid the copy here but we'll deal with that later
                             var text = Encoding.UTF8.GetString(buffer.ToArray());
-                            text = $"{connection.ConnectionId}: {text}";
+                            text = $"{connectionName}: {text}";
                             await Broadcast(Encoding.UTF8.GetBytes(text));
                         }
                         else if (result.IsCompleted)
@@ -54,9 +55,9 @@ namespace SignalRConnectionHandlerSample
             }
             finally
             {
-                Connections.Remove(connection);
+                Connections.TryRemove(connectionName, out _);
 
-                await Broadcast($"{connection.ConnectionId} disconnected ({transportType})");
+                await Broadcast($"{connectionName} disconnected ({transportType})");
             }
         }
 
@@ -68,9 +69,13 @@ namespace SignalRConnectionHandlerSample
         private Task Broadcast(byte[] payload)
         {
             var tasks = new List<Task>(Connections.Count);
-            foreach (var c in Connections)
+            foreach (var pair in Connections)
             {
-                tasks.Add(c.Transport.Output.WriteAsync(payload).AsTask());
+                var context = pair.Value;
+                // TODO: Use a connection-level lock to avoid concurrent writes.
+                // The default Pipe holds the lock between GetMemory and Advance,
+                // so it's not technically necessary, but it's best practice.
+                tasks.Add(context.Transport.Output.WriteAsync(payload).AsTask());
             }
 
             return Task.WhenAll(tasks);
