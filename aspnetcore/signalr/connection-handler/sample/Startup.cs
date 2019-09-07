@@ -36,7 +36,7 @@ namespace SignalRConnectionHandlerSample
             {
                 app.UseEndpoints(endpoints =>
                 {
-                    endpoints.MapConnectionHandler<MessagesConnectionHandler>("/chat");
+                    endpoints.MapConnectionHandler<EchoConnectionHandler>("/echo");
                 });
             });
         }
