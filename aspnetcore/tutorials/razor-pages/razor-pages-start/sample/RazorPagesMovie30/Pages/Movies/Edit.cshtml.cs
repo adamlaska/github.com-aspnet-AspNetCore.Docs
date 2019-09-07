@@ -39,6 +39,7 @@ namespace RazorPagesMovie.Pages.Movies
             return Page();
         }
 
+        #region snippet
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -71,5 +72,6 @@ namespace RazorPagesMovie.Pages.Movies
         {
             return _context.Movie.Any(e => e.ID == id);
         }
+        #endregion
     }
 }

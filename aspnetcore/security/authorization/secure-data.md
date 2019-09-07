@@ -32,7 +32,7 @@ This tutorial shows how to create an ASP.NET Core web app with user data protect
 * **Managers** can approve or reject contact data. Only approved contacts are visible to users.
 * **Administrators** can approve/reject and edit/delete any data.
 
-The images in this document exactly don't match the latest templates.
+The images in this document don't exactly match the latest templates.
 
 In the following image, user Rick (`rick@example.com`) is signed in. Rick can only view approved contacts and **Edit**/**Delete**/**Create New** links for his contacts. Only the last record, created by Rick, displays **Edit** and **Delete** links. Other users won't see the last record until a manager or administrator changes the status to "Approved".
 
@@ -601,11 +601,12 @@ If you haven't already set a password for seeded user accounts, use the [Secret 
   dotnet user-secrets set SeedUserPW <PW>
   ```
 
-* Drop and update the database
+* Drop and update the Database
+
     ```console
      dotnet ef database drop -f
      dotnet ef database update  
-```
+     ```
 
 * Restart the app to seed the database.
 

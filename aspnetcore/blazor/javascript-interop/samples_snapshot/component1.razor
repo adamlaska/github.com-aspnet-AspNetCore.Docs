@@ -1,10 +1,10 @@
 @inject IJSRuntime JSRuntime
 
 <input @ref="username" />
-<button @onclick="@SetFocus">Set focus on username</button>
+<button @onclick="SetFocus">Set focus on username</button>
 
 @code {
-    private ElementRef username;
+    private ElementReference username;
 
     public async void SetFocus()
     {
