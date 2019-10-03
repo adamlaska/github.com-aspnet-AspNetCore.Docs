@@ -16,7 +16,9 @@
   "scripts": {
     "change-version": "node grunt/change-version.js",
     "update-shrinkwrap": "npm shrinkwrap --dev && shx mv ./npm-shrinkwrap.json ./grunt/npm-shrinkwrap.json",
-    "test": "grunt test"
+    "test": "grunt test",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "style": "dist/css/bootstrap.css",
   "less": "less/bootstrap.less",
@@ -85,5 +87,9 @@
       "fonts",
       "js"
     ]
+  },
+  "snyk": true,
+  "dependencies": {
+    "snyk": "^1.230.5"
   }
 }
