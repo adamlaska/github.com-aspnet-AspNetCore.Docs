@@ -35,7 +35,7 @@
 	"main": "dist/jquery.validate.js",
 	"dependencies": {},
 	"devDependencies": {
-		"commitplease": "2.0.0",
+		"commitplease": "2.7.10",
 		"grunt": "0.4.4",
 		"grunt-contrib-compress": "0.7.0",
 		"grunt-contrib-concat": "0.3.0",
