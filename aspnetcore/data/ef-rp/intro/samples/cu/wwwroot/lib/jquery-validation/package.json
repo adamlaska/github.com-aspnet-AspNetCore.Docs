@@ -37,7 +37,7 @@
 	"devDependencies": {
 		"commitplease": "2.0.0",
 		"grunt": "0.4.4",
-		"grunt-contrib-compress": "0.7.0",
+		"grunt-contrib-compress": "0.14.0",
 		"grunt-contrib-concat": "0.3.0",
 		"grunt-contrib-copy": "0.5.0",
 		"grunt-contrib-jshint": "^0.10.0",
