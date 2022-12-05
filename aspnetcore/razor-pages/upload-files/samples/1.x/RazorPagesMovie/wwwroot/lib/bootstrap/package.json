@@ -47,7 +47,7 @@
     "grunt-contrib-pug": "~1.0.0",
     "grunt-contrib-qunit": "~0.7.0",
     "grunt-contrib-uglify": "~1.0.0",
-    "grunt-contrib-watch": "~1.0.0",
+    "grunt-contrib-watch": "~1.1.0",
     "grunt-csscomb": "~3.1.0",
     "grunt-exec": "~1.0.0",
     "grunt-html": "~8.0.1",
